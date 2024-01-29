@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { remult } from 'remult';
 import { Task } from '../../shared/task';
+import { tasksController } from '../../shared/tasksController';
 
 @Component({
   selector: 'app-todo',
@@ -51,9 +52,7 @@ export class TodoComponent implements OnInit, OnDestroy {
     this.unsubscribe()
   }
   async setAllCompleted(completed: boolean) {
-    for (const task of await this.taskRepo.find()) {
-      await this.taskRepo.save({ ...task, completed });
-    }
+    await tasksController.setAllCompleted(completed)
   }
 }
 
