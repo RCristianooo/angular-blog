@@ -1,4 +1,4 @@
-import { Entity, Fields } from "remult";
+import { Entity, Fields, Validators } from "remult";
 
 @Entity("tasks", {
     allowApiCrud: true,
@@ -6,7 +6,9 @@ import { Entity, Fields } from "remult";
 export class Task{
     @Fields.autoIncrement()
     id = 0;
-    @Fields.string()
+    @Fields.string({
+        validate: Validators.required
+    })
     title = '';
     @Fields.boolean()
     completed = false

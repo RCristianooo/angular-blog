@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
+import { remult } from "remult"
 import { RouterOutlet } from '@angular/router';
 import { TodoComponent } from './todo/todo.component';
 
@@ -14,4 +15,7 @@ import { TodoComponent } from './todo/todo.component';
 })
 export class AppComponent {
   title = 'angular-blog';
+  constructor(zone: NgZone) {
+    remult.apiClient.wrapMessageHandling = handler => zone.run(() => handler())
+  }
 }
